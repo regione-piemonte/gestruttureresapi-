@@ -1,0 +1,33 @@
+/*******************************************************************************
+* Copyright Regione Piemonte - 2023
+* SPDX-License-Identifier: EUPL-1.2
+******************************************************************************/
+package it.csi.gescovid.gestruttureresapi.business.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import it.csi.gescovid.gestruttureresapi.dto.Errore;
+
+
+/**
+ * Response di defult per le API GET (read)
+ *
+ *
+ */
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@io.swagger.annotations.ApiResponses(
+		value = { 
+				@io.swagger.annotations.ApiResponse(code = 200, message = "Success"),
+				@io.swagger.annotations.ApiResponse(code = 400, message = "Bad request, ricontrollare parametri in input", response = Errore.class),
+		        @io.swagger.annotations.ApiResponse(code = 401, message = "Utente non autorizzato a compiere l'operazione", response = Errore.class),
+		        @io.swagger.annotations.ApiResponse(code = 404, message = "Risorsa non trovata", response = Errore.class),
+		        @io.swagger.annotations.ApiResponse(code = 500, message = "Internal Server Error", response = Errore.class)
+		 }
+)
+public @interface ApiResponsesGet {
+
+}
